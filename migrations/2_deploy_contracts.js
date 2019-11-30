@@ -14,7 +14,7 @@ module.exports = async (deployer, network) => {
   const vaultManager = await VaultManager.deployed()
   console.log(`VaultManager Contract address: ${vaultManager.address}`)
 
-  contractRegistry.updateContractAddress('VaultManager', vaultManager.address)
+  contractRegistry.addContract('VaultManager', vaultManager.address)
 
   console.log(`Updated contract manager to contain contracts`)
 
