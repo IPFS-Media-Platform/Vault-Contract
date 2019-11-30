@@ -4,6 +4,8 @@ import "./Vault.sol";
 
 
 contract VaultManager {
+
+  address[] private vaultAddressList;
   mapping (string => address) public vaultList;
 
   event VaultAdded(string name, address vaultAddress);
@@ -17,10 +19,18 @@ contract VaultManager {
     address _vaultAddress = createVault();
 
     vaultList[_name] = _vaultAddress;
-
+    vaultAddressList.push(_vaultAddress);
     emit VaultAdded(_name, _vaultAddress);
 
     return _vaultAddress;
+  }
+
+  function getVaults()
+    public
+    view
+    returns (address[] memory)
+  {
+    return vaultAddressList;
   }
 
   function createVault()

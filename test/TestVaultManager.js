@@ -1,6 +1,7 @@
 const VaultManager = artifacts.require("../contracts/VaultManager.sol");
 
 const mockVaultName = '1.21gigavaults'
+const anotherMockVaultName = '2.21gigavaults'
 const mockIpfsHash = 'QmWWQSuPMS6aXCbZKpEjPHPUZN2NjB3YrhJTHsV4X3vb2t'
 
 contract('VaultManager', () => {
@@ -19,5 +20,18 @@ contract('VaultManager', () => {
     transaction = await vaultManager.addNewVault(mockVaultName)
     vaultAddress = transaction.logs[0].args.vaultAddress
     assert.equal(await vaultManager.vaultList(mockVaultName), vaultAddress, 'vaultList does not contain mockVaultName')
+  });
+
+  it('getVaults() returns list of vaults', async () => {
+    transaction = await vaultManager.addNewVault(mockVaultName)
+    vaultAddress = transaction.logs[0].args.vaultAddress
+    anotherTransaction = await vaultManager.addNewVault(anotherMockVaultName)
+    anotherVaultAddress = anotherTransaction.logs[0].args.vaultAddress
+
+    vaultAddressList = [vaultAddress, anotherVaultAddress]
+    getsVaultsList = await vaultManager.getVaults()
+
+    assert.equal(getsVaultsList[0], vaultAddressList[0], 'getsVaultsList does not return vaultAddressList')
+    assert.equal(getsVaultsList[1], vaultAddressList[1], 'getsVaultsList does not return vaultAddressList')
   });
 });
