@@ -12,7 +12,9 @@
   "repository": "git@github.com:IPFS-Media-Platform/vault-contract.git",
   "author": "CaelRowley <caelrowley@gmail.com>",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "truffle-hdwallet-provider": "^1.0.17"
+  },
   "devDependencies": {
     "remix-ide": "^0.8.8",
     "solium": "^1.2.5"
