@@ -5,6 +5,8 @@
   "main": "truffle-config.js",
   "scripts": {
     "test": "truffle test",
+    "lint": "solium --dir .",
+    "livelint": "solium --watch --dir contracts/",
     "remix": "cd ./contracts && remix-ide"
   },
   "repository": "git@github.com:IPFS-Media-Platform/vault-contract.git",
@@ -12,6 +14,7 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "remix-ide": "^0.8.8"
+    "remix-ide": "^0.8.8",
+    "solium": "^1.2.5"
   }
 }
