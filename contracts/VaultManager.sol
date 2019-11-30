@@ -8,19 +8,20 @@ contract VaultManager {
   address[] private vaultAddressList;
   mapping (string => address) public vaultList;
 
-  event VaultAdded(string name, address vaultAddress);
+  event VaultAdded(string name, string ipfsHash, address vaultAddress);
 
   function addNewVault(
-    string memory _name
+    string memory _name,
+    string memory _ipfsHash
   )
     public
     returns (address)
   {
-    address _vaultAddress = createVault();
+    address _vaultAddress = createVault(_ipfsHash);
 
     vaultList[_name] = _vaultAddress;
     vaultAddressList.push(_vaultAddress);
-    emit VaultAdded(_name, _vaultAddress);
+    emit VaultAdded(_name, _ipfsHash, _vaultAddress);
 
     return _vaultAddress;
   }
@@ -33,11 +34,12 @@ contract VaultManager {
     return vaultAddressList;
   }
 
-  function createVault()
+  function createVault(string memory _ipfsHash)
     private
     returns (address _vaultAddress)
   {
-
-    _vaultAddress = address(new Vault());
+    Vault vault = new Vault();
+    vault.add(_ipfsHash);
+    _vaultAddress = address(vault);
   }
 }
