@@ -3,7 +3,14 @@
   "version": "1.0.0",
   "description": "A smart contract service to allow the uploading and downloading of media to a vault",
   "main": "truffle-config.js",
+  "scripts": {
+    "remix": "cd ./contracts && remix-ide"
+  },
   "repository": "git@github.com:IPFS-Media-Platform/vault-contract.git",
   "author": "CaelRowley <caelrowley@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "remix-ide": "^0.8.8"
+  }
 }
